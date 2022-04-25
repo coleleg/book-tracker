@@ -1,4 +1,4 @@
-//used to store saved books on component unmount
+// stores saved book data from Home page on unmount
 export const saveBookLocal = (savedBooks) => {
     if (savedBooks.length) {
         localStorage.setItem('saved_books', JSON.stringify(savedBooks));
@@ -8,7 +8,7 @@ export const saveBookLocal = (savedBooks) => {
 }
 
 // retrieve books from local storage.  if none, return an empty array.
-export const getLocalBooks = () => {
+export const getBooksLocal = () => {
     const localBooks = localStorage.getItem('saved_books')
     ? JSON.parse(localStorage.getItem('saved_books')) : [];
     
@@ -16,3 +16,6 @@ export const getLocalBooks = () => {
 }
 
 // need a remove book function
+export const removeBookLocal = (bookId) => {
+    
+}
