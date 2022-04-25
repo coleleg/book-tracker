@@ -1,6 +1,10 @@
 const { Schema } = require('mongoose');
 
 const bookSchema = new Schema({
+    bookId: {
+        type: String,
+        required: true
+    },
     authors: [ 
         {
             type: String
