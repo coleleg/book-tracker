@@ -1,20 +1,113 @@
 const { User } = require('../../models/');
 
+const { signToken } = require('../../utils/auth');
+
 const userController = {
-    getUserById({ params }, res) {
-        User.findOne({ _id: params.userId })
-            .select('-__v')
-            .then(data => res.json(data))
-            .catch(err => {
-                console.log(err);
-                res.sendStatus(400);
-            })
+    async getUserById({ user }, res) {
+        const singleUser = await User.findOne({ _id: user._id });
+
+        if (!singleUser) {
+            return res.status(400).json({ message: 'No user found!' })
+        }
+
+        res.json(singleUser);
+
     },
 
-    createUser({ body }, res) {
-        User.create(body)
-            .then(data => res.json(data))
-            .catch(err => res.json(err));
+    async createUser({ body }, res) {
+        const user = new User(body);
+
+        try {
+            await user.save();
+            res.send(user);
+        } catch (error) {
+            res.status(500).send(error);
+        }
+
+        const token = signToken(user);
+        res.json({ token, user });
+    },
+
+    async login({ body }, res) {
+        const user = await User.findOne({ $or: [{ username: body.username }, { email: body.email }] });
+
+        if (!user) {
+            return res.status(400).json({ message: 'No user found with these credentials!'});
+        }
+
+        const correctPassword = await user.isCorrectPassword(body.password);
+
+        if (!correctPassword) {
+            return res.status(400).json({ message: 'Incorrect password!' })
+        }
+
+        const token = signToken(user);
+        res.json({ token, user });
+    },
+
+    async saveBookToRead({ user, body }, res) {
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: user._id},
+            { $addToSet: { booksToRead: body }},
+            { new: true, runValidators: true }
+        );
+        
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'No user found with this id!'})
+        }
+        return res.json(updatedUser);
+    },
+
+    async deleteSavedBookToRead({ user, params }, res) {
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: user._id },
+            { $pull: { savedBooks: { bookId: params.bookId } } },
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'No user found with this id!'})
+        }
+        return res.json(updatedUser);
+    },
+
+    async addToCurrentlyReading({ user, body}, res) {
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: user._id },
+            { $addToSet: { currentlyReading: body }},
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'No user found with this id!'})
+        }
+        return res.json(updatedUser);
+    },
+
+    async deleteBookCurrentlyReading({ user, params }, res) {
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: user._id },
+            { $pull: { curentlyReading: { bookId: params.bookId } } },
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'No user found with this id!'})
+        }
+        return res.json(updatedUser);
+    },
+
+    async addToBooksRead({ user, body}, res) {
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: user._id },
+            { $addToSet: { booksRead: body }},
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'No user found with this id!'})
+        }
+        return res.json(updatedUser);
     }
 }
 

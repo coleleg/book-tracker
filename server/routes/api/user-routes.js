@@ -1,13 +1,35 @@
 const router = require('express').Router();
+const { authMiddleware } = require('../../utils/auth');
 
 const {
     getUserById,
-    createUser
+    createUser,
+    login,
+    saveBookToRead,
+    deleteSavedBookToRead,
+    addToCurrentlyReading,
+    deleteBookCurrentlyReading,
+    addToBooksRead
 } = require('../../controllers/api/user-controller')
 
-router.route('/').post(createUser);
+router.route('/')
+    .post(createUser)
+    
+router.route('/booksToRead')
+    .put(authMiddleware, saveBookToRead)
+    .delete(authMiddleware, deleteSavedBookToRead)
 
-router.route('/users/:id').get(getUserById);
+router.route('/currentlyReading')
+    .put(authMiddleware, addToCurrentlyReading)
+    .delete(authMiddleware, deleteBookCurrentlyReading)
 
+router.route('/booksRead')
+    .put(authMiddleware, addToBooksRead)
+
+router.route('/me')
+    .get(authMiddleware, getUserById);
+
+router.route('/login')
+    .post(login);
 
 module.exports = router;
