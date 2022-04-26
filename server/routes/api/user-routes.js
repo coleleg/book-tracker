@@ -17,10 +17,14 @@ router.route('/')
     
 router.route('/booksToRead')
     .put(authMiddleware, saveBookToRead)
+
+router.route('/booksToRead/:bookId')
     .delete(authMiddleware, deleteSavedBookToRead)
 
 router.route('/currentlyReading')
     .put(authMiddleware, addToCurrentlyReading)
+    
+router.route('/currentlyReading/:bookId')
     .delete(authMiddleware, deleteBookCurrentlyReading)
 
 router.route('/booksRead')
