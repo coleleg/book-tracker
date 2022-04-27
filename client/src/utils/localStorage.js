@@ -3,7 +3,7 @@ export const saveBookLocal = (savedBooks) => {
     if (savedBooks.length) {
         localStorage.setItem('saved_books', JSON.stringify(savedBooks));
     } else {
-        localStorageStorage.removeItem('saved_books');
+        localStorage.removeItem('saved_books');
     }
 }
 

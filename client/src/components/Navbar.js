@@ -23,7 +23,7 @@ const Navbar = () => {
 const Nav = styled.div`
     width: 100%;
     height: 70px;
-    background-color: #5ADE86;
+    background-color: #46D694;
     display: flex;
     justify-content: space-between;
 `;
