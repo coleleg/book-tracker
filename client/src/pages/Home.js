@@ -56,6 +56,7 @@ const Home = () => {
 
     const handleSavedBook = async (bookId) => {
         const targetBook = searchedBooks.find((book) => book.bookId === bookId);
+        console.log(targetBook);
 
         // if there is a token, set it as the value, otherwise set value as null
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -84,8 +85,8 @@ const Home = () => {
                 <SearchBar>
                     <form onSubmit={handleSearch}>
                         <label>SEARCH FOR A BOOK!</label>
-                        <input type="text" value={userSearch} onChange={(e) => setUserSearch(e.target.value)} name="query" placeholder="Alice in Wonderland"></input>
-                        <button type="submit">INTO THE RABBIT HOLE</button>
+                        <input type="text" value={userSearch} onChange={(e) => setUserSearch(e.target.value)} name="query"></input>
+                        <button type="submit">SEARCH</button>
                     </form>
 
                 </SearchBar>
@@ -93,16 +94,18 @@ const Home = () => {
             <Results>
                 {searchedBooks.map((book) => {
                     return (
-                        <Card>
+                        <Card key={book.bookId}>
                             <img src = {book.img} />
                             <h4>{book?.title}</h4>
                             <h5>{book?.authors}</h5>
                             <p className='desc'>{book?.description}</p>
                             <p className='pages'>Page Count: {book?.pageCount}</p>
-                            <button>Add to Saved Books</button>
+                            <button disabled={savedBooks?.some((savedBookId) => savedBookId === book.bookId)} 
+                                    onClick={() => handleSavedBook(book.bookId)}>{savedBooks?.some((savedBookId) => savedBookId === book.bookId) ? `You have already saved this book` 
+                                    : `Add to Saved Books`}</button>
                         </Card>
                     )
-                })};
+                })}
             </Results>
         </Container>
 
@@ -124,8 +127,8 @@ const Header = styled.div`
 `
 const SearchBar = styled.div`
     form {
-        display: block;
-        width: 100%;
+        display: flex;
+        width: 75vw;
         padding: 1rem;
         border-radius: 50px;
         box-shadow: inset 20px 20px 60px #9c3a51,
@@ -133,26 +136,36 @@ const SearchBar = styled.div`
 
         label {
             font-size: 150%;
+            margin-right: 1rem;
         }
 
         input {
             margin-top: 1em;
             width: 75%;
             padding: .5em;
-            border-radius: 10px;
-            box-shadow: inset 6px 6px 10px 0(0, 0, 0, 0.2),
-                inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5)
+            border-radius: 51px;
+            background: #B8445F;
+            box-shadow: inset 5px 5px 10px #6e2939,
+                        inset -5px -5px 10px #ff5f85;;
+            margin-right: 1rem;
+            font-size: 16px;
+        }
+
+        input, textarea {
+            color: black;
         }
 
         button {
             margin-top: 1em;
-            border-radius: 5px;
-            background: #5ADE86;
-            box-shadow: inset 5px 5px 10px #42a262,
-            inset -5px -5px 10px #72ffaa;
+            border-radius: 51px;
+            background: linear-gradient(145deg, #a63d56, #c54966);
+            box-shadow:  25px 25px 50px #4a1b26,
+                        -25px -25px 50px #ff6d98;
             font-size: 16px;
             border: none;
             cursor: pointer;
+            margin-right: 1rem;
+            padding: 1rem;
         }
     }
 `
@@ -168,8 +181,8 @@ const Card = styled.div`
     padding: 1em;
     border-radius: 50px;
     background: #5ADE86;
-    box-shadow: inset -5px -5px 73px #245936,
-            inset 5px 5px 73px #90ffd6;
+    box-shadow: inset -20px -20px 40px #245936,
+            inset 20px 20px 40px #90ffd6;
 
     .pages {
         font-size: 75%;

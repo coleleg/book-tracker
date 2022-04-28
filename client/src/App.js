@@ -6,11 +6,14 @@ import Saved from './pages/Saved';
 import Current from './pages/Current';
 import Finished from './pages/Finished';
 import Navbar from './components/Navbar';
+import Login from './components/Login'
+
 
 function App() {
   return (
       <div className="App">
         <Navbar />
+        <Login />
           <Router>
               <Routes>
                 <Route path = '/' element={<Home />} />

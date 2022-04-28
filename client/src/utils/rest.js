@@ -32,7 +32,7 @@ export const getMe = (token) => {
 };
 
 export const saveBookToRead = (data, token) => {
-    return fetch('/api/users/booksToRead', {
+    return fetch('api/users/booksToRead', {
         method: `PUT`,
         headers: {
             'Content-Type': 'application/json',
