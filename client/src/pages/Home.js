@@ -16,7 +16,7 @@ const Home = () => {
 
     // handles component unmount
     useEffect(() => {
-        return () => saveBookToRead(saveBookLocal);
+        return () => saveBookLocal(savedBooks);
     });
 
 
@@ -56,12 +56,12 @@ const Home = () => {
 
     const handleSavedBook = async (bookId) => {
         const targetBook = searchedBooks.find((book) => book.bookId === bookId);
-        console.log(targetBook);
 
         // if there is a token, set it as the value, otherwise set value as null
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if(!token) {
+            console.log('Could not find your token.');
             return false;
         }
 
@@ -186,6 +186,10 @@ const Card = styled.div`
 
     .pages {
         font-size: 75%;
+    }
+
+    button {
+        cursor: pointer;
     }
 `
 

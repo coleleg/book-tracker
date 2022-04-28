@@ -29,7 +29,7 @@ const userController = {
     },
 
     async login({ body }, res) {
-        const user = await User.findOne({ $or: [{ username: body.username }, { email: body.email }] });
+        const user = await User.findOne({ email: body.email  });
 
         if (!user) {
             return res.status(400).json({ message: 'No user found with these credentials!'});

@@ -1,14 +1,52 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import { loginUser } from '../utils/rest';
+import Auth from '../utils/auth';
 
 function Login() {
+    const [formState, setFormState] = useState({ email: '', password: '' });
+
+    const handleChange = async (event) => {
+        const { name, value } = event.target;
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await loginUser(formState);
+            
+            if(!response.ok) {
+                throw new Error('Try again');
+            }
+
+            const { token, user } = await response.json();
+            console.log(user);
+            Auth.login(token);
+
+        } catch (e) {
+            console.error(e);
+        }
+
+        setFormState({
+            email: '',
+            password:''
+        });
+    }
+
+
     return (
         <Container>
-            <LoginForm>
+            <LoginForm onSubmit={handleSubmit}>
                 <label>Email</label>
-                <input type='email'></input>
+                <input type='email' name='email' onChange={handleChange}></input>
                 <label>Password</label>
-                <input type='password'></input>
+                <input type='password' name='password' onChange={handleChange}></input>
                 <button type='submit'>Login</button>
             </LoginForm>
         </Container>
