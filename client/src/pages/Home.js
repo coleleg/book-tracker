@@ -118,7 +118,6 @@ const Container = styled.main`
 const Header = styled.div`
     height: 20vh;
     width: 100%;
-    background-color: #7D67CE;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -129,7 +128,9 @@ const SearchBar = styled.div`
         display: block;
         width: 100%;
         padding: 1rem;
-        border-radius: 5px;
+        border-radius: 50px;
+        box-shadow: inset 20px 20px 60px #9c3a51,
+            inset -20px -20px 60px #d44e6d;
 
         label {
             font-size: 150%;
@@ -146,6 +147,12 @@ const SearchBar = styled.div`
         button {
             margin-top: 1em;
             border-radius: 5px;
+            background: #5ADE86;
+            box-shadow: inset 5px 5px 10px #42a262,
+            inset -5px -5px 10px #72ffaa;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
         }
     }
 `
@@ -157,8 +164,12 @@ const Results = styled.div`
 `
 
 const Card = styled.div`
+    margin: 1rem;
     padding: 1em;
-    border: 3px solid black;
+    border-radius: 59px;
+    background: linear-gradient(315deg, #60ee8f, #51c879);
+    box-shadow:  -5px -5px 2px #245936,
+                 5px 5px 2px #90ffd6;
 
     .pages {
         font-size: 75%;
