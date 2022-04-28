@@ -7,6 +7,15 @@ const Navbar = () => {
             <Logo />
             <Menu>
                 <a>
+                    <span>SAVED BOOKS</span>
+                </a>
+                <a>
+                    <span>CURRENTLY READING</span>
+                </a>
+                <a>
+                    <span>COMPLETED BOOKS</span>
+                </a>
+                <a>
                     <span>LOGIN</span>
                 </a>
                 <a>

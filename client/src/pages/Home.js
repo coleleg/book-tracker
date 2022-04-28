@@ -85,7 +85,7 @@ const Home = () => {
                     <form onSubmit={handleSearch}>
                         <label>SEARCH FOR A BOOK!</label>
                         <input type="text" value={userSearch} onChange={(e) => setUserSearch(e.target.value)} name="query" placeholder="Alice in Wonderland"></input>
-                        <button type="submit">Into the Rabbit Hole</button>
+                        <button type="submit">INTO THE RABBIT HOLE</button>
                     </form>
 
                 </SearchBar>
@@ -110,7 +110,6 @@ const Home = () => {
 };
 
 const Container = styled.main`
-    height: 100vh;
     background: #B8445F;
     overflow-x: hidden;
 `
@@ -118,7 +117,7 @@ const Container = styled.main`
 const Header = styled.div`
     height: 20vh;
     width: 100%;
-    margin: 0;
+    margin: 2rem 0 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,8 +139,9 @@ const SearchBar = styled.div`
             margin-top: 1em;
             width: 75%;
             padding: .5em;
-            border: 1px solid black;
-            border-radius: 5px;
+            border-radius: 10px;
+            box-shadow: inset 6px 6px 10px 0(0, 0, 0, 0.2),
+                inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5)
         }
 
         button {
@@ -166,10 +166,10 @@ const Results = styled.div`
 const Card = styled.div`
     margin: 1rem;
     padding: 1em;
-    border-radius: 59px;
-    background: linear-gradient(315deg, #60ee8f, #51c879);
-    box-shadow:  -5px -5px 2px #245936,
-                 5px 5px 2px #90ffd6;
+    border-radius: 50px;
+    background: #5ADE86;
+    box-shadow: inset -5px -5px 73px #245936,
+            inset 5px 5px 73px #90ffd6;
 
     .pages {
         font-size: 75%;
