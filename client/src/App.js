@@ -18,9 +18,9 @@ function App() {
           <Router>
               <Routes>
                 <Route path = '/' element={<Home />} />
-                <Route path = '/saved' component={<Saved />} />
-                <Route path = '/current' component={<Current />} />
-                <Route path = '/finished' component={<Finished />} />
+                <Route path = '/saved' element={<Saved />} />
+                <Route path = '/current' element={<Current />} />
+                <Route path = '/finished' element={<Finished />} />
               </Routes>
           </Router>
       </div>

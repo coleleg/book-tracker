@@ -7,13 +7,13 @@ const Navbar = () => {
         <Nav>
             <Logo />
             <Menu>
-                <a>
+                <a href="/saved">
                     <span>SAVED BOOKS</span>
                 </a>
-                <a>
+                <a href="/current">
                     <span>CURRENTLY READING</span>
                 </a>
-                <a>
+                <a href="/completed">
                     <span>COMPLETED BOOKS</span>
                 </a>
                 <a>
@@ -51,6 +51,8 @@ const Menu = styled.div`
         margin-right: 2vw;
         cursor: pointer;
         font-weight: bold;
+        text-decoration: none;
+        color: black;
     }
 `
 
