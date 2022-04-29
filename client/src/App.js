@@ -20,7 +20,7 @@ function App() {
                 <Route path = '/' element={<Home />} />
                 <Route path = '/saved' element={<Saved />} />
                 <Route path = '/current' element={<Current />} />
-                <Route path = '/finished' element={<Completed />} />
+                <Route path = '/completed' element={<Completed />} />
               </Routes>
           </Router>
       </div>
