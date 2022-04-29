@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Saved from './pages/Saved';
 import Current from './pages/Current';
-import Finished from './pages/Finished';
+import Completed from './pages/Completed';
 import Navbar from './components/Navbar';
 import Login from './components/Login'
 
@@ -20,7 +20,7 @@ function App() {
                 <Route path = '/' element={<Home />} />
                 <Route path = '/saved' element={<Saved />} />
                 <Route path = '/current' element={<Current />} />
-                <Route path = '/finished' element={<Finished />} />
+                <Route path = '/finished' element={<Completed />} />
               </Routes>
           </Router>
       </div>

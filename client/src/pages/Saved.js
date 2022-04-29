@@ -36,6 +36,8 @@ function Saved() {
     }, [dataLength]);
 
     const handleMoveToCurrent = async (bookId) => {
+        const targetBook = userData.booksToRead?.find((book) => book.bookId === bookId);
+
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         localStorage.setItem('id', bookId);
 
@@ -46,7 +48,7 @@ function Saved() {
 
 
         try {
-            const response = await addToCurrentlyReading(bookId, token);
+            const response = await addToCurrentlyReading(targetBook, token);
 
             if (!response.ok) {
                 throw new Error('Try again')
@@ -73,7 +75,7 @@ function Saved() {
                 console.error(err);
             }
         
-        console.log(userData);
+    
     }
 
     return (

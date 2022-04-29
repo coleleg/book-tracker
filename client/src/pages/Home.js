@@ -113,7 +113,6 @@ const Home = () => {
 };
 
 const Container = styled.main`
-    background: #B8445F;
     overflow-x: hidden;
 `
 

@@ -44,7 +44,7 @@ export const saveBookToRead = (data, token) => {
 
 export const deleteSavedBookToRead = (bookId, token) => {
     return fetch(`/api/users/booksToRead/${bookId}`, {
-        method: `DELETE`,
+        method: 'DELETE',
         headers: {
             authorization: `Bearer ${token}`,
         },
@@ -71,7 +71,7 @@ export const deleteFromCurrentlyReading = (bookId, token) => {
     });
 };
 
-export const addToBooksRead = (data, token) => {
+export const addToBooksCompleted = (data, token) => {
     return fetch('/api/users/booksRead', {
         method: `PUT`,
         headers: {

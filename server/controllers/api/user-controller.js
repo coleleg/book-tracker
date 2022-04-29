@@ -75,7 +75,7 @@ const userController = {
         const updatedUser = await User.findOneAndUpdate(
             { _id: user._id },
             { $addToSet: { currentlyReading: body }},
-            { new: true }
+            { new: true, runValidators: true }
         );
 
         if (!updatedUser) {
@@ -87,7 +87,7 @@ const userController = {
     async deleteBookCurrentlyReading({ user, params }, res) {
         const updatedUser = await User.findOneAndUpdate(
             { _id: user._id },
-            { $pull: { curentlyReading: { bookId: params.bookId } } },
+            { $pull: { currentlyReading: { bookId: params.bookId } } },
             { new: true }
         );
 
