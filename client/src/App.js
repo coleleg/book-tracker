@@ -14,10 +14,10 @@ function App() {
   return (
       <div className="App">
         <Navbar />
-        <Login />
           <Router>
               <Routes>
                 <Route path = '/' element={<Home />} />
+                <Route path = '/login' element={<Login />} />
                 <Route path = '/saved' element={<Saved />} />
                 <Route path = '/current' element={<Current />} />
                 <Route path = '/completed' element={<Completed />} />

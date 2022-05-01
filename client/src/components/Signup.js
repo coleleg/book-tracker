@@ -19,11 +19,9 @@ function Signup() {
 
 const Container = styled.div`
     display: block;
-    margin-left: auto;
-    margin-right: 10vw;
+    margin: auto;
+    margin-top: 10%;
     width: 25vw;
-    margin-top: 5vh;
-    z-index: 10;
 `
 
 const LoginForm = styled.form`
