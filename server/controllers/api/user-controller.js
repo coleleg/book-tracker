@@ -15,15 +15,12 @@ const userController = {
     },
 
     async createUser({ body }, res) {
-        const user = new User(body);
+        const user = await User.create(body);
 
-        try {
-            await user.save();
-            res.send(user);
-        } catch (error) {
-            res.status(500).send(error);
+        if(!user) {
+            return res.status(400).json({ message: 'Something is wrong!'})
         }
-
+        
         const token = signToken(user);
         res.json({ token, user });
     },

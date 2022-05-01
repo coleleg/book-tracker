@@ -33,7 +33,7 @@ function Completed() {
 
                 // iterate through booksRead to get total pages read
                 let pages = 0;
-                for (let i=0; i < user.booksRead.length; i++) {
+                for (let i = 0; i < user.booksRead.length; i++) {
                     pages = pages + user.booksRead[i].pageCount
                 }
                 setPagesRead(pages);
@@ -55,10 +55,8 @@ function Completed() {
                 {userData.booksRead?.map((book) => {
                         return (
                             <Card key={book.bookId}>
-                                <img src = {book.img} />
                                 <h4>{book?.title}</h4>
                                 <h5>{book?.authors}</h5>
-                                <p className='desc'>{book?.description}</p>
                                 <p className='pages'>Page Count: {book?.pageCount}</p>
                             </Card>
                         )

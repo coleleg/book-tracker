@@ -85,10 +85,8 @@ function Current() {
                 {userData.currentlyReading?.map((book) => {
                         return (
                             <Card key={book.bookId}>
-                                <img src = {book.img} />
                                 <h4>{book?.title}</h4>
                                 <h5>{book?.authors}</h5>
-                                <p className='desc'>{book?.description}</p>
                                 <p className='pages'>Page Count: {book?.pageCount}</p>
                                 <button onClick={() => handleMoveToFinished(book?.bookId)}>Move to Completed Books</button>
                             </Card>

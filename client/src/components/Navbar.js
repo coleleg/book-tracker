@@ -20,10 +20,10 @@ const Navbar = () => {
                 <a href="/completed">
                     <span>COMPLETED BOOKS</span>
                 </a>
-                <a>
+                <a href="/login">
                     <span>LOGIN</span>
                 </a>
-                <a>
+                <a href="/signup">
                     <span>SIGNUP</span>
                 </a>
                 <a>

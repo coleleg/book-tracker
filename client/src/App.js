@@ -7,6 +7,7 @@ import Current from './pages/Current';
 import Completed from './pages/Completed';
 import Navbar from './components/Navbar';
 import Login from './components/Login'
+import Signup from './components/Signup';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
               <Routes>
                 <Route path = '/' element={<Home />} />
                 <Route path = '/login' element={<Login />} />
+                <Route path = '/signup' element={<Signup />} />
                 <Route path = '/saved' element={<Saved />} />
                 <Route path = '/current' element={<Current />} />
                 <Route path = '/completed' element={<Completed />} />

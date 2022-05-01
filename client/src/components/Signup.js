@@ -1,17 +1,60 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import { createUser } from '../utils/rest';
+import Auth from '../utils/auth';
+import { useNavigate } from 'react-router';
 
 function Signup() {
+    const navigate = useNavigate();
+
+    const [formState, setFormState] = useState({ email: '', username: '', password: '' });
+
+    const handleChange = async (event) => {
+        const { name, value } = event.target;
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await createUser(formState);
+            
+            if(!response.ok) {
+                throw new Error('Try again');
+            }
+
+            const { token, user } = await response.json();
+            Auth.login(token);
+
+        } catch (e) {
+            console.error(e);
+        }
+
+        setFormState({
+            email: '',
+            username: '',
+            password:''
+        });
+
+        navigate('/');
+
+    }
+
     return (
         <Container>
-            <LoginForm>
+            <LoginForm onSubmit={handleSubmit}>
                 <label>Email</label>
-                <input type='email'></input>
-                <labe>Username</labe>
-                <input type='text'></input>
+                <input type='email' name='email' onChange={handleChange}></input>
+                <label>Username</label>
+                <input type='text' name='username' onChange={handleChange}></input>
                 <label>Password</label>
-                <input type='password'></input>
-                <button type='submit'>Login</button>
+                <input type='password' name='password' onChange={handleChange}></input>
+                <button type='submit'>Signup</button>
             </LoginForm>
         </Container>
     )

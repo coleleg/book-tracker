@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import { loginUser } from '../utils/rest';
 import Auth from '../utils/auth';
+import { useNavigate } from 'react-router';
 
 function Login() {
+    const navigate = useNavigate();
+
     const [formState, setFormState] = useState({ email: '', password: '' });
 
     const handleChange = async (event) => {
@@ -36,6 +39,8 @@ function Login() {
             email: '',
             password:''
         });
+
+        navigate('/');
 
     }
 
