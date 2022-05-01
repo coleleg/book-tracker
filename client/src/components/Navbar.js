@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import Auth from '../utils/auth';
 
 
 const Navbar = () => {
+    const handleLogout = () => {
+        Auth.logout();
+    }
+
     return (
         <Nav>
             <Logo>
@@ -27,7 +32,7 @@ const Navbar = () => {
                     <span>SIGNUP</span>
                 </a>
                 <a>
-                    <span>LOGOUT</span>
+                    <span onClick={handleLogout}>LOGOUT</span>
                 </a>
             </Menu>
         </Nav>
