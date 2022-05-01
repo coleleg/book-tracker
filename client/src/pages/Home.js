@@ -165,6 +165,10 @@ const SearchBar = styled.div`
             cursor: pointer;
             margin-right: 1rem;
             padding: 1rem;
+
+            &:hover {
+                transform: scale(1.05);
+            }
         }
     }
 `

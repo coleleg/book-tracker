@@ -27,7 +27,6 @@ function Login() {
 
             const { token, user } = await response.json();
             Auth.login(token);
-            console.log(user);
 
         } catch (e) {
             console.error(e);

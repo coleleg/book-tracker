@@ -30,7 +30,13 @@ function Completed() {
 
                 const user = await response.json();
                 setUserData(user);
-                console.log(user);
+
+                // iterate through booksRead to get total pages read
+                let pages = 0;
+                for (let i=0; i < user.booksRead.length; i++) {
+                    pages = pages + user.booksRead[i].pageCount
+                }
+                setPagesRead(pages);
 
             } catch (err) {
                 console.error(err);
@@ -40,12 +46,11 @@ function Completed() {
         
     }, [dataLength]);
 
-    console.log(userData.booksRead[0].pageCount); 
 
     return (
         <Container>
             <h1>Books You Have Completed</h1>
-            <h2>Pages Read: {pagesRead}</h2>
+            <h2>Total Pages Read: {pagesRead}</h2>
             <Results>
                 {userData.booksRead?.map((book) => {
                         return (
