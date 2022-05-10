@@ -78,6 +78,31 @@ function Saved() {
     
     }
 
+    const handleDelete = async (bookId) => {
+        const targetBook = userData.booksToRead?.find((book) => book.bookId === bookId);
+
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+            console.log('No token found')
+            return false;
+        }
+
+        try {
+            const response = await deleteSavedBookToRead(bookId, token);
+            
+            if (!response.ok) {
+                throw new Error('Try again')
+            }
+
+            const updatedUser = await response.json();
+            setUserData(updatedUser);
+
+            } catch (err) {
+                console.error(err);
+            }
+    }
+
     return (
         <Container>
             <h1>Your Saved Books</h1>
@@ -91,6 +116,7 @@ function Saved() {
                                 <p className='desc'>{book?.description}</p>
                                 <p className='pages'>Page Count: {book?.pageCount}</p>
                                 <button onClick={() => handleMoveToCurrent(book?.bookId)}>Move to Currently Reading</button>
+                                <button onClick={() => handleDelete(book?.bookId)}>Delete from Saved Books</button>
                             </Card>
                         )
                 })}
@@ -123,6 +149,7 @@ const Card = styled.div`
 
     button {
         cursor: pointer;
+        margin: .5rem;
     }
 `
 
