@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { getMe, deleteSavedBookToRead, addToCurrentlyReading } from '../utils/rest';
+import { removeBook } from '../utils/localStorage';
 import Auth from '../utils/auth';
 
 function Saved() {
@@ -62,6 +63,7 @@ function Saved() {
         
 
         try {
+            // doesn't need targetbook as the argument because it's not looking for all of the book's associated data
             const response = await deleteSavedBookToRead(bookId, token);
             
             if (!response.ok) {
@@ -79,8 +81,6 @@ function Saved() {
     }
 
     const handleDelete = async (bookId) => {
-        const targetBook = userData.booksToRead?.find((book) => book.bookId === bookId);
-
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
@@ -89,6 +89,7 @@ function Saved() {
         }
 
         try {
+            // doesn't need targetbook as the argument because it's not looking for all of the book's associated data
             const response = await deleteSavedBookToRead(bookId, token);
             
             if (!response.ok) {
@@ -97,6 +98,8 @@ function Saved() {
 
             const updatedUser = await response.json();
             setUserData(updatedUser);
+            // without removeBook, if you have multiple saved books and delete them, they will still show up as "already saved" when searched
+            removeBook(bookId);
 
             } catch (err) {
                 console.error(err);
@@ -150,6 +153,16 @@ const Card = styled.div`
     button {
         cursor: pointer;
         margin: .5rem;
+        border-radius: 15px;
+        background: #5ade86;
+        box-shadow: inset -5px -5px 16px #245936,
+                    inset 5px 5px 16px #90ffd6;
+        border: none;
+        padding: .5rem;
+
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 `
 

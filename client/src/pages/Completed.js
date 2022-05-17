@@ -87,10 +87,6 @@ const Card = styled.div`
     .pages {
         font-size: 75%;
     }
-
-    button {
-        cursor: pointer;
-    }
 `
 
 export default Completed

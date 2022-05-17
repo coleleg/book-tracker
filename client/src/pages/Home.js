@@ -84,7 +84,7 @@ const Home = () => {
             <Header>
                 <SearchBar>
                     <form onSubmit={handleSearch}>
-                        <label>SEARCH FOR A BOOK!</label>
+                        <label> {Auth.loggedIn() ? 'SEARCH FOR A BOOK!' : 'YOU MUST BE LOGGED IN TO SAVE BOOKS' }</label>
                         <input type="text" value={userSearch} onChange={(e) => setUserSearch(e.target.value)} name="query"></input>
                         <button type="submit">SEARCH</button>
                     </form>
@@ -96,13 +96,13 @@ const Home = () => {
                     return (
                         <Card key={book.bookId}>
                             <img src = {book.img} />
-                            <h4>{book?.title}</h4>
-                            <h5>{book?.authors}</h5>
+                            <h4 className='title'>{book?.title}</h4>
+                            <h5 className='authors'>{book?.authors}</h5>
                             <p className='desc'>{book?.description}</p>
                             <p className='pages'>Page Count: {book?.pageCount}</p>
                             <button disabled={savedBooks?.some((savedBookId) => savedBookId === book.bookId)} 
                                     onClick={() => handleSavedBook(book.bookId)}>{savedBooks?.some((savedBookId) => savedBookId === book.bookId) ? `You have already saved this book` 
-                                    : `Add to Saved Books`}</button>
+                                    : `Save Book`}</button>
                         </Card>
                     )
                 })}
@@ -176,23 +176,59 @@ const Results = styled.div`
     display: grid;
     padding: 20px 5px 20px;
     grid-gap: 25px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    // grid-template-columns: repeat(4, minmax(0, 1fr));
 `
 
 const Card = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 1rem;
     padding: 1em;
-    border-radius: 50px;
-    background: #5ADE86;
-    box-shadow: inset -20px -20px 40px #245936,
-            inset 20px 20px 40px #90ffd6;
+    border-radius: 26px;
+    background: #5ade86;
+    box-shadow:  5px 5px 5px #3d975b,
+                -5px -5px 5px #77ffb1;
+
+    img {
+        margin: .5rem;
+        border-radius: 1rem;
+    }
+    .title {
+        margin: .5rem;
+        min-width: 10rem;
+        max-width: 10rem;
+    }
+
+    .authors {
+        margin: .5rem;
+    }
+
+    .desc {
+        margin: .5rem;
+    }
 
     .pages {
+        min-width: 6rem;
         font-size: 75%;
+        margin: .5rem;
     }
 
     button {
+        min-width: 175px;
+        border-radius: 16px;
+        background: linear-gradient(315deg, #51c879, #60ee8f);
+        box-shadow:  -5px -5px 10px #41a060,
+                    5px 5px 10px #73ffac;
+        font-size: 16px;
+        border: none;
         cursor: pointer;
+        margin: .5rem;
+        padding: .25rem;
+
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 `
 

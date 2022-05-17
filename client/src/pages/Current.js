@@ -121,6 +121,17 @@ const Card = styled.div`
 
     button {
         cursor: pointer;
+        margin: .5rem;
+        border-radius: 15px;
+        background: #5ade86;
+        box-shadow: inset -5px -5px 16px #245936,
+                    inset 5px 5px 16px #90ffd6;
+        border: none;
+        padding: .5rem;
+
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 `
 
