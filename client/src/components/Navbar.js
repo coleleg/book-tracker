@@ -46,6 +46,7 @@ const Nav = styled.div`
     background-color: #5ADE86;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 `;
 
 const Logo = styled.div`
@@ -57,7 +58,17 @@ const ImgContainer = styled.div`
         cursor: pointer;
         max-height: 70px;
         margin-left: -3rem;
+
+        @media(max-width: 1200px) {
+            margin-left: 1rem;
+        }
+
+        @media(max-width: 1000px) {
+            width: 65%;
+        }
     }
+
+    
 `
 
 const Menu = styled.div`
@@ -71,6 +82,14 @@ const Menu = styled.div`
         font-weight: bold;
         text-decoration: none;
         color: black;
+    }
+
+    @media(max-width: 1000px) {
+        font-size: 75%;
+    }
+
+    @media(max-width: 576px) {
+        font-size: 40%;
     }
 `
 

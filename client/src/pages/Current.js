@@ -98,6 +98,10 @@ function Current() {
 }        
 
 const Container = styled.div`
+    margin-top: 1rem;
+    @media(max-width: 768px) {
+        font-size: 65%;
+    }
 `
 
 const Results = styled.div`
@@ -105,6 +109,14 @@ const Results = styled.div`
     padding: 20px 5px 20px;
     grid-gap: 25px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    @media(max-width: 1200px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media(max-width: 768px) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
 `
 
 const Card = styled.div`

@@ -84,7 +84,7 @@ const Home = () => {
             <Header>
                 <SearchBar>
                     <form onSubmit={handleSearch}>
-                        <label> {Auth.loggedIn() ? 'SEARCH FOR A BOOK!' : 'YOU MUST BE LOGGED IN TO SAVE BOOKS' }</label>
+                        <label className='label'> {Auth.loggedIn() ? 'SEARCH FOR A BOOK!' : 'YOU MUST BE LOGGED IN TO SAVE BOOKS' }</label>
                         <input type="text" value={userSearch} onChange={(e) => setUserSearch(e.target.value)} name="query"></input>
                         <button type="submit">SEARCH</button>
                     </form>
@@ -123,10 +123,13 @@ const Header = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
 `
 const SearchBar = styled.div`
     form {
         display: flex;
+        justify-content: center;
+        align-items: center;
         width: 75vw;
         padding: 1rem;
         border-radius: 50px;
@@ -170,6 +173,24 @@ const SearchBar = styled.div`
                 transform: scale(1.05);
             }
         }
+
+        @media(max-width: 1000px) {
+            label {
+                font-size: 75%;
+            }
+
+            button {
+                font-size: 50%;
+            }
+
+        @media(max-width: 576px) {
+            display: block;
+
+            button {
+                margin-top: 1rem;
+            }
+        }
+
     }
 `
 const Results = styled.div`
@@ -180,6 +201,33 @@ const Results = styled.div`
 `
 
 const Card = styled.div`
+    margin: 1rem;
+    padding: 1em;
+    border-radius: 50px;
+    background: #5ADE86;
+    box-shadow: inset -20px -20px 40px #245936,
+            inset 20px 20px 40px #90ffd6;
+    .pages {
+        font-size: 75%;
+    }
+    button {
+        min-width: 175px;
+        border-radius: 16px;
+        background: linear-gradient(315deg, #51c879, #60ee8f);
+        box-shadow:  -5px -5px 10px #41a060,
+                    5px 5px 10px #73ffac;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        padding: .25rem;
+        margin: .5rem;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    @media (min-width: 1200px) {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -206,6 +254,7 @@ const Card = styled.div`
 
     .desc {
         margin: .5rem;
+        overflow: hidden;
     }
 
     .pages {
@@ -214,22 +263,7 @@ const Card = styled.div`
         margin: .5rem;
     }
 
-    button {
-        min-width: 175px;
-        border-radius: 16px;
-        background: linear-gradient(315deg, #51c879, #60ee8f);
-        box-shadow:  -5px -5px 10px #41a060,
-                    5px 5px 10px #73ffac;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-        margin: .5rem;
-        padding: .25rem;
-
-        &:hover {
-            transform: scale(1.05);
-        }
-    }
+}
 `
 
 

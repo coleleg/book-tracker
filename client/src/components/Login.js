@@ -59,13 +59,15 @@ function Login() {
 }
 
 const Container = styled.div`
-    display: block;
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 10%;
-    width: 25vw;
 `
 
 const LoginForm = styled.form`
+    display: block;
+    width: 550px;
     border-radius: 25px;
     background: #7D6C7E;
     box-shadow: inset 17px 17px 34px #5f5260,
@@ -101,6 +103,10 @@ const LoginForm = styled.form`
             font-size: 20px;
             cursor: pointer;
             border: none;
+        }
+
+        @media(max-width: 576px) {
+            width: 250px;
         }
 `
 
