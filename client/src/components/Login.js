@@ -28,7 +28,7 @@ function Login() {
                 throw new Error('Try again');
             }
 
-            const { token, user } = await response.json();
+            const { token } = await response.json();
             Auth.login(token);
 
         } catch (e) {
