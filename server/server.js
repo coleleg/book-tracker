@@ -17,7 +17,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-app.use(routes);
+// app.use(routes);
 
 db.once('open', () => {
         app.listen(PORT, () => {
